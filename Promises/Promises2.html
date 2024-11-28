@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body style="background-color: #313131;"></body>
+  <script>
+    // Task
+    // 1. first go to the office
+    // 2. get a bus
+    // 3. say hello to a colleage
+    // 4. take out your laptop and start working
+
+    let task = new Promise((res, rej) => {
+      res("first go to the office"); // Resolving the first promise
+    });
+
+    let p2 = task.then((data) => {
+      console.log(data); // Log the first resolution value
+      return new Promise((res, rej) => {
+        res("get a bus"); // Resolving the second promise
+      });
+    });
+
+    let p3 = p2.then((data) => {
+      console.log(data); // Log the second resolution value
+      return new Promise((res, rej) => {
+        res("say hello to a colleague");
+      });
+    });
+
+    let p4 = p3.then((data) => {
+      console.log(data);
+      return new Promise((resolve, reject) => {
+        return resolve("take out your laptop and start work");
+      });
+      // Log the third resolution value
+    });
+    p4.then((data) => {
+      console.log(data);
+    });
+
+    // Fetching
+
+    function user() {
+      fetch(`https://randomuser.me/api/`)
+        .then((raw) => {
+          return raw.json();
+        })
+        .then((data) => {
+          console.log(data);
+          
+        });
+    }
+
+    user();
+  </script>
+</html>
